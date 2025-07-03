@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Professor - FakeEtec</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="estilos/style5.css">
+  </head>
+  <body>
+    <header>
+        <h2>Perfil do Professor</h2>
+        <div>
+            <a href="homepage.html">HomePage</a>
+        </div>
+    </header>
+    <div class="container">
+        <div class="foto">
+                <img src="imagens/perfil.webp" alt="" height="150px">
+            </div>
+            <div class="texto">
+                <h2>Flávio Coelho</h2>
+                <p>Professor de Técnicas de Programação de Algorítimo</p>
+                <a href="#"><button class="btn btn-primary">Editar perfil</button></a>
+            </div>
+    </div>
+    <main>
+        <div class="tarefa">
+            <h2>Adicionar tarefa</h2>
+            <button type="button" class="btn btn-primary" data-bs-target="#modalTarefa" data-bs-toggle="modal">Adicionar tarefa</button>
+        </div>
+        <div class="notas">
+            <h2>Atribuir notas</h2>
+            <button type="button" class="btn btn-primary" data-bs-target="#modalNotas" data-bs-toggle="modal">Atribuir</button>
+        </div>
+        <div class="frequencia">
+            <!-- Colocar gráficos fictícios de frequência -->
+             <div class="exemplo" style="background-color: blue; width: 400px; height: 300px;">
+                <h2>Exemplo</h2>
+             </div>
+        </div>
+    </main>
+
+     <div class="modal fade" id="modalTarefa" tabindex="-1" aria-labelledby="modalTarefaLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="modalCancelarLabel">Postar tarefa</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+           <form id="formTarefa" class="modal-content" method="POST">
+                <label for="imateria" class="form-label">Matéria</label>
+                <input type="text" name="materia" id="imateria" class="form-control" required>
+
+                <label for="idata" class="form-label">Data de postagem</label>
+                <input type="date" name="data" id="idata" class="form-control" required>
+
+                <label for="iprazo" class="form-label">Prazo</label>
+                <input type="date" name="prazo" id="iprazo" class="form-control" required>
+
+                <label for="iobjetivo" class="form-label">Objetivo</label>
+                <input type="text" name="objetivo" id="iobjetivo" class="form-control" required>
+           </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <button type="button" id="btnPostar" class="btn btn-primary">Postar</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="modal fade" id="modalNotas" tabindex="-1" aria-labelledby="modalNotasLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="modalCancelarLabel">Postar tarefa</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+           <form id="formNotas" class="modal-content" method="POST">
+                <label for="inome" class="form-label">Nome do Aluno</label>
+                <input type="text" name="nome" id="inome" class="form-control" required>
+
+                <label for="idisciplina" class="form-label">Matéria</label>
+                <input type="text" name="materia" id="idisciplina" class="form-control" required>
+
+                <label for="inota" class="form-label">Nota</label>
+                <input type="number" name="nota" id="inota" class="form-control" required max="10">
+           </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <button type="button" id="btnEnviar" class="btn btn-primary">Postar</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <script>
+        document.getElementById('btnPostar').addEventListener('click', function(){
+            event.preventDefault();
+
+            const materia = document.getElementById('imateria').value.trim();
+            const data_postagem = document.getElementById('idata').value.trim();
+            const prazo = document.getElementById('iprazo').value.trim();
+            const objetivo = document.getElementById('iobjetivo').value.trim();
+
+            if(!materia || !data_postagem || !prazo || !objetivo){
+                alert("Preencha todos os campos");
+            }
+
+            const formTarefa = new URLSearchParams();
+            formTarefa.append('materia', materia);
+            formTarefa.append('postagem', data_postagem);
+            formTarefa.append('prazo', prazo);
+            formTarefa.append('objetivo', objetivo);
+            fetch('tarefa.php', {
+                method: "POST",
+                headers: {'Content-Type': 'application/x-www-form-urlencoded' },
+                body: formTarefa.toString()
+            })
+            .then(resposta => resposta.text())
+            .then(resposta => {
+                if(resposta.trim() === "Sucesso"){
+                    alert('Tarefa adicionada');
+                }
+                else{
+                    alert("Erro, consulte o suporte");
+                    console.error("Mensagem de erro: ", resposta);
+                }
+            })
+            .catch(error => {
+                alert("Erro de comunicação com o servidor");
+                console.error("Erro: ", error)
+            })
+
+            const modal = bootstrap.Modal.getInstance(document.getElementById('modalTarefa'))
+            modal.hide()
+        })
+
+        document.getElementById('btnEnviar').addEventListener('click', function(){
+            event.preventDefault();
+
+            const nome_aluno = document.getElementById('inome').value.trim();
+            const disciplina = document.getElementById('idisciplina').value.trim();
+            const nota = document.getElementById('inota').value;
+            if(!nome_aluno || !disciplina || !nota){
+                alert('Preencha todos os campos');
+            }
+
+            const formNotas = new URLSearchParams();
+            formNotas.append('nome', nome_aluno);
+            formNotas.append('disciplina', disciplina);
+            formNotas.append('nota', nota);
+            
+            fetch('nota.php', {
+                method: "POST",
+                headers: {'Content-Type': 'application/x-www-form-urlencoded' },
+                body: formNotas.toString()
+            })
+            
+            .then(resposta => resposta.text())
+            .then(resposta => {
+                if(resposta.trim() === 'Sucesso'){
+                    alert('Nota adicionada');
+                }
+                else{
+                    alert('Erro, consulte o suporte');
+                    console.error('Erro: ', resposta);
+                }
+            })
+            .catch(error => {
+                alert("Erro de comunicação com o servidor")
+                console.error("Erro: ", error)
+            })
+
+            const modal = bootstrap.Modal.getInstance(document.getElementById('modalNotas'))
+            modal.hide()
+        })
+    </script>
+  </body>
+</html>

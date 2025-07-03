@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+body{
+    height: 100%;
+    width: 100%;
+}
+header{
+    background-color: rgb(5, 5, 165);
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+}
+header > h2{
+    color: white;
+    text-align: center;
+}
+header > div > a{
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    margin-left: 20px;
+    margin-right: 10px;
+    transition: .5s;
+}
+header > div > a:hover{
+    text-decoration: underline;
+    font-size: 1.1em;
+}
+main{
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 3;
+    grid-template-rows: 4;
+    gap: 20px;
+}
+#nota{
+    width: 500px;
+    padding: 10px;
+}
+.matematica{
+    margin-left: 60px;
+    grid-column: 1 / 2;
+    grid-row: 1;
+}
+.portugues{
+    grid-column: 2 / 3;
+    grid-row: 1;
+}
+.historia{
+    margin-left: 60px;
+    grid-column: 1;
+    grid-row: 2;
+}
+.fisica{
+    margin-left: 60px;
+}
+.curso{
+    margin-left: 60px;
+}

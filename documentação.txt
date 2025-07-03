@@ -1,0 +1,11 @@
+03/07/2025 08:00 - 09:00
+
+- Finalização da homepage e da página de inscrição, finalização do sistema de inscrição e início da página de perfil
+
+03/07/2025 10:00 - 11:00 
+
+- Finalização da página de perfil, do sistema de login de professores e da página de desempenho, início da página de professores
+
+03/07/2025 17:20 - 19:20
+
+- Finalização da página de professores, do sistema de tarefas e do sistema de notas, início da página de equipe gestora

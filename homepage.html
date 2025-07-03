@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HomePage - FakeEtec</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <style>
+        .nav-link{
+            transition: .5s;
+        }
+        .nav-link:hover{
+            text-decoration: underline;
+            font-size: 1.1em;
+        }
+    </style>
+  </head>
+  <body style="height: 100%;">
+    <div class="d-flex">
+  <!-- Sidebar -->
+        <nav class="sidebar bg-dark text-white p-3" style="height: 100%; position: fixed;">
+            <h4 class="text-center">Menu FakeEtec</h4>
+            <ul class="nav flex-column">
+            <li class="nav-item" style="padding: 10px;">
+                <a class="nav-link text-white text-left" href="desempenho.html">Desempenho</a>
+            </li>
+            <li class="nav-item" style="padding: 10px;">
+                <button type="button" class="nav-link" data-bs-target="#modalAdmin" data-bs-toggle="modal" style="color: white;">Área do Professor</button> <!-- Page 2-->
+            </li>
+            <li class="nav-item" style="padding: 10px;">
+                <a class="nav-link text-white" href="admin.html">Administração</a>
+            </li>
+            <li class="nav-item" style="margin-top: 450px;">
+                <a href="#" class="nav-link text-white">Perfil</a> <!-- Fazer estilo do perfil bonitinho-->
+            </li>
+            </ul>
+        </nav>
+
+    <!-- Conteúdo principal -->
+        <div class="conteudo flex-grow-1 p-4" style="margin-left: 200px;">
+            <h1>Bem-vindo ao FakeEtec</h1>
+            <div class="dropdown" style="padding: 10px;">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Cursos Disponíveis
+                </button>
+                <!-- Criar as páginas de cada curso-->
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Desenvolvimento de Sistemas</a></li>
+                    <li><a class="dropdown-item" href="#">Automação Industrial</a></li>
+                    <li><a class="dropdown-item" href="#">Administração</a></li>
+                </ul>
+            </div>
+            <!-- FIM DO DROPDOWN -->
+             <div style="border-top: 100px; padding: 10px;">
+                 <h2>Imagens FakeEtec - Aquarius</h2>
+             </div>
+             <div id="carouselExampleIndicators" class="carousel slide" style="width: 300px; height: 300px; margin-top: 50px; border-radius: 10px;">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                    <img src="imagens/img01.jpg" class="d-block w-100" alt="..." style="border-radius: 10px;">
+                    </div>
+                    <div class="carousel-item">
+                    <img src="imagens/img02.jpg" class="d-block w-100" alt="..." style="border-radius: 10px;">
+                    </div>
+                    <div class="carousel-item">
+                    <img src="imagens/img03.jpg" class="d-block w-100" alt="..." height="170px" style="border-radius: 10px;">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            
+            <div class="concurso">
+                <h2>Faça o vestibular FakeEtec!</h2>
+                <p>Anualmente abrimos inscrições para vestibulares subsequentes, concomitantes e integrados ao ensino médio. Confira as datas e faça sua inscrição!</p>
+                <ul>
+                    <li>Inscrição: 20/06 - 10/07</li>
+                    <li>Confirmação das inscrições - 11/07</li>
+                    <li>Divulgação do local da prova - 13/07</li>
+                    <li>Realização da prova - 20/07</li>
+                </ul>
+                <a href="#"><button class="btn btn-primary">Inscreva-se!</button></a>
+            </div>
+            <!-- MODAL -->
+             <div class="modal fade" id="modalAdmin" tabindex="-1" aria-labelledby="modaAdminLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <form id="formAdmin" class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalAdicionarReuniaoLabel">Login - Professor</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                        <label for="inome" class="form-label">Nome</label>
+                        <input type="text" name="nome" id="inome" required maxlength="15" class="form-control">
+
+                        <label for="iemail" class="form-label">Email</label>
+                        <input type="email" name="email" id="iemail" required maxlength="50" class="form-control">
+
+                        <label for="isenha" class="form-label">Senha</label>
+                        <input type="password" name="senha" id="isenha" required maxlength="20" class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Entrar</button>
+                    </div>
+                    </form>
+                    </div>
+                </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>   
+    <script>
+        document.getElementById('formAdmin').addEventListener('submit', function(e){
+            e.preventDefault();
+
+            const nome = document.getElementById('inome').value.trim();
+            const email = document.getElementById('iemail').value.trim();
+            const senha = document.getElementById('isenha').value.trim();
+
+            if (!nome || !email || !senha) {
+                alert('Preencha todos os campos.');
+                return;
+            }
+
+            const formProfessor = new URLSearchParams();
+            formProfessor.append('nome', nome);
+            formProfessor.append('email', email);
+            formProfessor.append('senha', senha)
+            fetch('professor.php', {
+                method: "POST",
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: formProfessor.toString()
+            })
+            .then(response => response.text())
+            .then(resposta => {
+                if(resposta.trim() === 'Sucesso'){
+                    window.location.href = "perfil.html" // muda aq para a página de professor otario
+                }
+                else{
+                    alert("Erro ao efetuar o login: ", resposta);
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert('Erro na comunicação com o servidor.')
+            });
+        })
+    </script>     
+</body>
+</html>
