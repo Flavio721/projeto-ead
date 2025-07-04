@@ -30,8 +30,8 @@
             <li class="nav-item" style="padding: 10px;">
                 <a class="nav-link text-white" href="admin.html">Administração</a>
             </li>
-            <li class="nav-item" style="margin-top: 450px;">
-                <a href="#" class="nav-link text-white">Perfil</a> <!-- Fazer estilo do perfil bonitinho-->
+            <li class="nav-item" style="padding: 10px;">
+                <button type="button" class="nav-link text-white" data-bs-target="#modalAluno" data-bs-toggle="modal">Aluno</button>
             </li>
             </ul>
         </nav>
@@ -62,13 +62,13 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                    <img src="imagens/img01.jpg" class="d-block w-100" alt="..." style="border-radius: 10px;">
+                    <img src="../imagens/img01.jpg" class="d-block w-100" alt="..." style="border-radius: 10px;">
                     </div>
                     <div class="carousel-item">
-                    <img src="imagens/img02.jpg" class="d-block w-100" alt="..." style="border-radius: 10px;">
+                    <img src="../imagens/img02.jpg" class="d-block w-100" alt="..." style="border-radius: 10px;">
                     </div>
                     <div class="carousel-item">
-                    <img src="imagens/img03.jpg" class="d-block w-100" alt="..." height="170px" style="border-radius: 10px;">
+                    <img src="../imagens/img03.jpg" class="d-block w-100" alt="..." height="170px" style="border-radius: 10px;">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -119,6 +119,36 @@
                     </form>
                     </div>
                 </div>
+
+                <div class="modal fade" id="modalAluno" tabindex="-1" aria-labelledby="modaAlunoLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <form id="formAluno" class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalAdicionarReuniaoLabel">Login - Aluno</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                        <label for="iname" class="form-label">Nome</label>
+                        <input type="text" name="nome" id="iname" required maxlength="15" class="form-control">
+
+                        <label for="isobrenome" class="form-label">Sobrenome</label>
+                        <input type="text" name="sobrenome" id="isobrenome" required maxlength="15" class="form-control">
+
+                        <label for="igmail" class="form-label">Email</label>
+                        <input type="email" name="gmail" id="igmail" required maxlength="50" class="form-control">
+
+                        <label for="ipassword" class="form-label">Senha</label>
+                        <input type="password" name="password" id="ipassword" required maxlength="20" class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Entrar</button>
+                    </div>
+                    </form>
+                    </div>
+                </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>   
     <script>
         document.getElementById('formAdmin').addEventListener('submit', function(e){
@@ -137,7 +167,7 @@
             formProfessor.append('nome', nome);
             formProfessor.append('email', email);
             formProfessor.append('senha', senha)
-            fetch('professor.php', {
+            fetch('../professor.php', {
                 method: "POST",
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: formProfessor.toString()
@@ -155,6 +185,43 @@
                 console.error(err);
                 alert('Erro na comunicação com o servidor.')
             });
+        })
+
+        document.getElementById('formAluno').addEventListener('submit', function(e){
+            e.preventDefault();
+
+            const nomeAluno = document.getElementById('iname').value.trim();
+            const sobrenomeAluno = document.getElementById('isobrenome').value.trim();
+            const emailAluno = document.getElementById('igmail').value.trim();
+            const senhaAluno = document.getElementById('ipassword').value.trim();
+
+            if (!nomeAluno || !sobrenomeAluno || !emailAluno || !senhaAluno) {
+                alert('Preencha todos os campos.');
+                return;
+            }
+
+            const formAluno = new URLSearchParams();
+            formAluno.append('nome', nomeAluno);
+            formAluno.append('sobrenome', sobrenomeAluno);
+            formAluno.append('email', emailAluno);
+            formAluno.append('senha', senhaAluno);
+
+            fetch('../aluno.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: formAluno.toString()
+            })
+            .then(response => response.text())
+            .then(resposta => {
+                if(resposta.trim() === "Sucesso"){
+                    alert('Login efetuado com sucesso')
+                    window.location.href = "perfil.html"
+                }
+                else{
+                    alert('Erro, comunique o suporte')
+                    console.error('Erro: ', resposta)
+                }
+            })
         })
     </script>     
 </body>

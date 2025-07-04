@@ -9,8 +9,8 @@ if(isset($_POST['submit'])){
   $cep = $_POST['cep'];
 
   $result = mysqli_query($conexao, "INSERT INTO inscricao(nome, sobrenome, email, senha, cep) VALUES ('$nome', '$sobrenome', '$email', '$senha', '$cep')");
-   header("Location: perfil.html");
-   exit();
+   
+  // Criar page para inscrição concluida
 }
 ?>
 <!doctype html>
