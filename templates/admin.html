@@ -33,6 +33,65 @@
             <button class="btn btn-primary" data-bs-target="modalCurso" data-bs-toggle="modal">Criar</button>
         </div>
     </main>
+
+    <!-- MODAL -->
+    <!-- Tem que testar otario -->
+    <div class="modal fade" id="modalMatricula" tabindex="-1" aria-labelledby="modaMatriculaLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <form id="formMatricula" class="modal-content" action="../matricula.php" method="POST">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalAdicionarReuniaoLabel">Mátricula - Aluno</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="inome" class="form-label">Nome</label>
+                            <input type="text" name="nome" id="inome" required maxlength="15" class="form-control">
+
+                            <label for="isobrenome" class="form-label">Sobrenome</label>
+                            <input type="text" name="sobrenome" id="isobrenome" required maxlength="15" class="form-control">
+
+                            <label for="icep" class="form-label">CEP</label>
+                            <input type="number" name="cep" id="icep" required maxlength="15" class="form-control">
+
+                            <label for="irua" class="form-label">Rua</label>
+                            <input type="text" name="rua" id="irua" required maxlength="15" class="form-control" readonly>
+                            
+                            <label for="ibairro" class="form-label">Bairro</label>
+                            <input type="text" name="bairro" id="ibairro" required maxlength="15" class="form-control" readonly>
+
+                            <label for="icidade" class="form-label">Cidade</label>
+                            <input type="text" name="cidade" id="icidade" required maxlength="15" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Entrar</button>
+                    </div>
+                    </form>
+                    </div>
+                </div>
+
+                <!-- MODAL PROFESSOR -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <script>
+        document.getElementById('icep').addEventListener('blur', function (){
+            const cep = this.value.replace(/\D/g, '');
+            if(cep.length === 8){
+                fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                .then(resposta => resposta.json)
+                .then(dados => {
+                    if(!dados.erro){
+                        document.getElementById('irua').value = dados.logradouro;
+                        document.getElementById('ibairro').value = dados.bairro;
+                        document.getElementById('icidade').value = dados.localidade;}
+                    else{
+                        alert("CEP não encontrado, tente novamente")
+                    }
+                    alert("Mátricula realizada")
+                })
+            }
+        })
+    </script>
   </body>
 </html>
