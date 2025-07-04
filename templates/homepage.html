@@ -90,7 +90,7 @@
                     <li>Divulgação do local da prova - 13/07</li>
                     <li>Realização da prova - 20/07</li>
                 </ul>
-                <a href="#"><button class="btn btn-primary">Inscreva-se!</button></a>
+                <button class="btn btn-primary" data-bs-target="#modalInscricao" data-bs-toggle="modal">Inscreva-se!</button>
             </div>
             <!-- MODAL -->
              <div class="modal fade" id="modalAdmin" tabindex="-1" aria-labelledby="modaAdminLabel" aria-hidden="true">
@@ -140,6 +140,48 @@
 
                         <label for="ipassword" class="form-label">Senha</label>
                         <input type="password" name="password" id="ipassword" required maxlength="20" class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Entrar</button>
+                    </div>
+                    </form>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="modalInscricao" tabindex="-1" aria-labelledby="modalInscricaoLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <form id="formInscricao" class="modal-content" action="../inscricao.php" method="POST">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalAdicionarReuniaoLabel">Inscirção - Vestibular</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                        <label for="inomee" class="form-label">Nome</label>
+                        <input type="text" name="nome" id="inomee" required maxlength="15" class="form-control">
+
+                        <label for="isobrenomee" class="form-label">Sobrenome</label>
+                        <input type="text" name="sobrenome" id="isobrenomee" required maxlength="15" class="form-control">
+
+                        <label for="imail" class="form-label">Email</label>
+                        <input type="email" name="email" id="imail" required maxlength="50" class="form-control">
+
+                        <label for="isenhaa" class="form-label">Senha</label>
+                        <input type="password" name="senha" id="isenhaa" required maxlength="50" class="form-control">
+
+                        <label for="icep" class="form-label">CEP</label>
+                        <input type="number" name="cep" id="icep" required maxlength="8" minlength="8" class="form-control">
+
+                        <label for="irua" class="form-label">Rua</label>
+                        <input type="text" name="rua" id="irua" required maxlength="30" class="form-control" readonly placeholder="Auto-preenchimento">
+
+                        <label for="ibairro" class="form-label">Bairro</label>
+                        <input type="text" name="bairro" id="ibairro" required maxlength="30" class="form-control" readonly placeholder="Auto-preenchimento">
+
+                        <label for="icidade" class="form-label">Cidade</label>
+                        <input type="text" name="cidade" id="icidade" required maxlength="30" class="form-control" readonly placeholder="Auto-preenchimento">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -223,6 +265,23 @@
                 }
             })
         })
+
+        document.getElementById('icep').addEventListener('blur', function () {
+        const cep = this.value.replace(/\D/g, '');
+        if (cep.length === 8) {
+            fetch(`https://viacep.com.br/ws/${cep}/json/`)
+            .then(response => response.json())
+            .then(data => {
+                if (!data.erro) {
+                document.getElementById('irua').value = data.logradouro || '';
+                document.getElementById('ibairro').value = data.bairro || '';
+                document.getElementById('icidade').value = data.localidade || '';                } else {
+                alert('CEP não encontrado!');
+                }
+                alert("Inscrição realizada, aguarde o email")
+            });
+        }
+        });
     </script>     
 </body>
 </html>
