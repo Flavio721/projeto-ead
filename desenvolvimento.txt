@@ -15,4 +15,3 @@ tarefas: Feito
 notas: Feito
 administração: Feito
 chat (ainda a definir): 
-admin: 

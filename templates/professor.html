@@ -116,7 +116,7 @@
             formTarefa.append('postagem', data_postagem);
             formTarefa.append('prazo', prazo);
             formTarefa.append('objetivo', objetivo);
-            fetch('tarefa.php', {
+            fetch('../scripts/tarefa.php', {
                 method: "POST",
                 headers: {'Content-Type': 'application/x-www-form-urlencoded' },
                 body: formTarefa.toString()
@@ -155,7 +155,7 @@
             formNotas.append('disciplina', disciplina);
             formNotas.append('nota', nota);
             
-            fetch('nota.php', {
+            fetch('../scripts/nota.php', {
                 method: "POST",
                 headers: {'Content-Type': 'application/x-www-form-urlencoded' },
                 body: formNotas.toString()

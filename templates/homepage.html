@@ -152,7 +152,7 @@
 
                 <div class="modal fade" id="modalInscricao" tabindex="-1" aria-labelledby="modalInscricaoLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                    <form id="formInscricao" class="modal-content" action="../inscricao.php" method="POST">
+                    <form id="formInscricao" class="modal-content" action="../scripts/inscricao.php" method="POST">
                     <div class="modal-header">
                         <h5 class="modal-title" id="modalAdicionarReuniaoLabel">Inscirção - Vestibular</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
@@ -209,7 +209,7 @@
             formProfessor.append('nome', nome);
             formProfessor.append('email', email);
             formProfessor.append('senha', senha)
-            fetch('../professor.php', {
+            fetch('../scripts/professor.php', {
                 method: "POST",
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: formProfessor.toString()
@@ -248,7 +248,7 @@
             formAluno.append('email', emailAluno);
             formAluno.append('senha', senhaAluno);
 
-            fetch('../aluno.php', {
+            fetch('../scripts/aluno.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: formAluno.toString()
