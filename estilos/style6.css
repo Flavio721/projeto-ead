@@ -1,1 +1,36 @@
 @charset "UTF-8";
+
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+#btn{
+    text-decoration: underline blue;
+    transition: .5s;
+}
+#btn:hover{
+    text-decoration: none;
+}
+
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin-left: 150px;
+}
+.email{
+    display: flex;
+    flex-flow: column;
+    border: 1px solid black;
+    width: 40%;
+    margin-top: 10px;
+    border-radius: 10px;
+    padding: 10px;
+}
+#enviar{
+    margin-top: 10px;
+    width: 70%;
+}

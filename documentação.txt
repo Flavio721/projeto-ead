@@ -9,3 +9,11 @@
 03/07/2025 17:20 - 19:20
 
 - Finalização da página de professores, do sistema de tarefas e do sistema de notas, início da página de equipe gestora
+
+04/07/2025 08:00 - 10:00
+
+- Finalização dos sistemas de mátricula e de registro de novo professor
+
+05/07/2025 08:00 - 10:00
+
+- Finalização de todos sistemas de administradores e atualizações necessárias
