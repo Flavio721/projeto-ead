@@ -17,3 +17,7 @@
 05/07/2025 08:00 - 10:00
 
 - Finalização de todos sistemas de administradores e atualizações necessárias
+
+05/07/2025 17:10 - 19:00
+
+- Finalização do layout da página de administração, do sistema de envio de e-mails para alunos e professores e do sistema de pesquisa de notas de alunos

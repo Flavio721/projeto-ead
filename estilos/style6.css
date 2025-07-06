@@ -19,7 +19,8 @@ main{
     align-items: center;
     justify-content: center;
     width: 80%;
-    margin-left: 150px;
+    margin-left: 200px;
+    gap: 30px;
 }
 .email{
     display: flex;
@@ -33,4 +34,11 @@ main{
 #enviar{
     margin-top: 10px;
     width: 70%;
+}
+.busca{
+    border: 1px solid black;
+    height: 465px;
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 10px;
 }

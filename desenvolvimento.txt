@@ -3,7 +3,7 @@ Faça todas as páginas do site
 homepage: Feito
 inscrição: Feito
 perfil: Feito
-administração:
+administração: Feito
 tarefas: Feito
 chat (sla se vai ter msm):
 dashboard de desempenho: Feito
@@ -13,5 +13,5 @@ Faça todos sistemas
 inscrição: Feito
 tarefas: Feito
 notas: Feito
-administração: Feito
+administração: Feito (falta apenas o sistema de acesso)
 chat (ainda a definir): 
